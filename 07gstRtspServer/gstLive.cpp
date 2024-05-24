@@ -37,6 +37,8 @@ void GstLive::onVideoSample(GstBuffer **videoBuf)
     GstMapInfo map;
     if (gst_buffer_map (*videoBuf, &map, GST_MAP_READ)) {
         qDebug() << "Video byteLen: " << (float)map.size / (float)(mImgWidth*mImgHeight);
+
+        gst_buffer_unmap(*videoBuf, &map);
     }
 #endif
 
@@ -50,6 +52,7 @@ void GstLive::onAudioSample(GstBuffer **audioBuf)
     GstMapInfo map;
     if (gst_buffer_map (*videoBuf, &map, GST_MAP_READ)) {
         qDebug() << "Video byteLen: " << (float)map.size;
+        gst_buffer_unmap(*videoBuf, &map);
     }
 
 #endif
